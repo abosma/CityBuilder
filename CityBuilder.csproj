@@ -84,10 +84,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Scripts\Components\Base\Component.cs" />
-    <Compile Include="Scripts\Components\Base\Collider.cs" />
-    <Compile Include="Scripts\Components\Colliders\Collider2D.cs" />
-    <Compile Include="Scripts\Components\InputComponent.cs" />
-    <Compile Include="Scripts\Components\PhysicsComponent.cs" />
+    <Compile Include="Scripts\Components\Colliders\Collider.cs" />
+    <Compile Include="Scripts\Components\Renderers\RectangleRenderer.cs" />
     <Compile Include="Scripts\Components\Renderers\SpriteRenderer.cs" />
     <Compile Include="Scripts\Components\Positions\Transform.cs" />
     <Compile Include="Scripts\Game\BasicScene.cs" />
@@ -95,6 +93,7 @@
     <Compile Include="Scripts\Global\World.cs" />
     <Compile Include="Scripts\Components\MapGenerator\MapGenerator.cs" />
     <Compile Include="Scripts\Components\MapGenerator\Tile.cs" />
+    <Compile Include="Scripts\Global\WorldCollision.cs" />
     <Compile Include="Start.cs" />
     <Compile Include="Scripts\Entities\Entity.cs" />
     <Compile Include="Scripts\Game\Game.cs" />

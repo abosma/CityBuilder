@@ -12,26 +12,16 @@ namespace CityBuilder.Scripts.Components.Renderers
     {
         public Sprite _sprite;
 
-        private Transform _transform;
-
         public override void Start()
         {
             _sprite = new Sprite();
-            _transform = Entity.GetComponent<Transform>();
         }
 
         public override void Update()
         {
-            _sprite.Position = _transform.GetPosition();
+            _sprite.Position = Entity.Transform.GetPosition();
 
-            try
-            {
-                WindowHandler.GetWindow().Draw(_sprite);
-            }
-            catch (Exception)
-            {
-                return;
-            }
+            WindowHandler.GetWindow().Draw(_sprite);
         }
 
         public void SetSprite(Sprite sprite)

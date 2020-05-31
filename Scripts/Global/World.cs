@@ -11,7 +11,10 @@ namespace CityBuilder.Scripts.Global
         {
             for (var i = 0; i < _entityList.Count; i++)
             {
-                _entityList[i].Update();
+                if (_entityList[i].IsActive)
+                {
+                    _entityList[i].Update();
+                }
             }
         }
 
@@ -20,6 +23,7 @@ namespace CityBuilder.Scripts.Global
             if (!_entityList.Contains(entity))
             {
                 entity.EntityId = _entityList.Count + 1;
+                entity.IsActive = true;
 
                 _entityList.Add(entity);
             }

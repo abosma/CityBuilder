@@ -1,11 +1,8 @@
-﻿using System;
-using CityBuilder.Scripts.Components;
-using CityBuilder.Scripts.Components.Colliders;
-using CityBuilder.Scripts.Components.MapGenerator;
-using CityBuilder.Scripts.Components.Positions;
+﻿using CityBuilder.Scripts.Components.Colliders;
 using CityBuilder.Scripts.Components.Renderers;
 using CityBuilder.Scripts.Entities;
-using SFML.System;
+using CityBuilder.Scripts.Global;
+using SFML.Graphics;
 
 namespace CityBuilder.Scripts.Game
 {
@@ -13,26 +10,30 @@ namespace CityBuilder.Scripts.Game
     {
         public BasicScene()
         {
-            var Town = new Entity();
-            var Town2 = new Entity();
+            var Town1 = new Entity();
+            var Town1Renderer = Town1.AddComponent(new RectangleRenderer(10, 10));
+            var Town1Collider = Town1.AddComponent(new Collider(10, 10));
+            
+            Town1Renderer.SetColor(Color.White);
+            
+            Town1Collider.MouseEnter += (sender, args) => GlobalConsole.WriteLine("Mouse Enter Town1");
+            Town1Collider.MouseExit += (sender, args) => GlobalConsole.WriteLine("Mouse Exit Town1");
 
-            var TownTransform = Town.AddComponent(new Transform(10, 10));
-            var TownCollider = Town.AddComponent(new Collider2D(32, 32));
-            var TownRenderer = Town.AddComponent(new SpriteRenderer());
+            World.AddEntity(Town1);
 
-            var Town2Transform = Town2.AddComponent(new Transform(50, 50));
-            var Town2Collider = Town2.AddComponent(new Collider2D(32, 32));
-            var Town2Renderer = Town2.AddComponent(new SpriteRenderer());
+            //Town1.Transform.Translate(25, 25, 0.5f);
 
-            TownRenderer.SetSprite("\\Assets\\Textures\\Town.png");
-            Town2Renderer.SetSprite("\\Assets\\Textures\\Town.png");
+            //var Town2 = new Entity(50, 50);
+            //var Town2Renderer = Town2.AddComponent(new RectangleRenderer(10, 10));
+            //var Town2Collider = Town2.AddComponent(new Collider(10, 10));
 
-            TownTransform.Translate(25, 25, 0.1f);
-            Town2Transform.Translate(25, 25, 0.1f);
+            //Town2Renderer.SetColor(Color.White);
+            //Town2.Transform.Translate(25, 25, 0.5f);
 
-            var MapEntity = new Entity();
+            //Town1Collider.CollidedWithEntity += entity => GlobalConsole.WriteLine($"Collided with {entity.EntityId}");
 
-            MapEntity.AddComponent(new MapGenerator(20));
+            //var MapEntity = new Entity();
+            //var MapGenerator = MapEntity.AddComponent(new MapGenerator(10));
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using CityBuilder.Scripts.Components.Base;
-using CityBuilder.Scripts.Game;
-using CityBuilder.Scripts.Global;
+using CityBuilder.Scripts.Components.Positions;
 
 namespace CityBuilder.Scripts.Entities
 {
@@ -11,9 +10,13 @@ namespace CityBuilder.Scripts.Entities
 
         public int EntityId;
 
-        public Entity()
+        public bool IsActive = false;
+
+        public Transform Transform;
+
+        public Entity(int x = 0, int y = 0)
         {
-            World.AddEntity(this);
+            Transform = AddComponent(new Transform(x, y));
         }
 
         public T GetComponent<T>() where T : Component

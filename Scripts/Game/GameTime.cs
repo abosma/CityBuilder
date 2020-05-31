@@ -25,6 +25,7 @@ namespace CityBuilder.Scripts.Game
                 Window.DispatchEvents();
                 Window.Clear();
 
+                WorldCollision.CheckCollision();
                 World.UpdateEntities();
                 GlobalConsole.DrawConsole();
 

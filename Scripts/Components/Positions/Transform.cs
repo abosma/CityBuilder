@@ -6,7 +6,7 @@ using GameTime = CityBuilder.Scripts.Game.GameTime;
 
 namespace CityBuilder.Scripts.Components.Positions
 {
-    class Transform : Component
+    public class Transform : Component
     {
         public event EventHandler ReachedPosition;
 
@@ -16,7 +16,7 @@ namespace CityBuilder.Scripts.Components.Positions
         private Vector2f _newPosition;
         private float _moveSpeed;
 
-        public Transform(int x, int y)
+        public Transform(float x, float y)
         {
             Position = new Vector2f(x, y);
         }

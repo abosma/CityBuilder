@@ -1,5 +1,7 @@
 ﻿using CityBuilder.Scripts.Components.Base;
+using CityBuilder.Scripts.Components.Renderers;
 using CityBuilder.Scripts.Global;
+using SFML.Graphics;
 
 namespace CityBuilder.Scripts.Components.MapGenerator
 {
@@ -19,12 +21,23 @@ namespace CityBuilder.Scripts.Components.MapGenerator
             _tiles = new Tile[MapSize, MapSize];
 
             FillList();
-            PrintList();
+            
         }
 
         public override void Update()
         {
             
+        }
+
+        public void PrintTileList()
+        {
+            for (var x = 0; x < MapSize; x++)
+            {
+                for (var y = 0; y < MapSize; y++)
+                {
+                    GlobalConsole.WriteLine(_tiles[x, y].ToString());
+                }
+            }
         }
 
         private void FillList()
@@ -33,18 +46,13 @@ namespace CityBuilder.Scripts.Components.MapGenerator
             {
                 for (var y = 0; y < MapSize; y++)
                 {
-                    _tiles[x, y] = new Tile($"Tile{x}_{y}");
-                }
-            }
-        }
+                    var ToAddTile = new Tile($"Tile{x}_{y}");
+                    ToAddTile.Transform.SetPosition(32 * x, 32 * y);
 
-        private void PrintList()
-        {
-            for (var x = 0; x < MapSize; x++)
-            {
-                for (var y = 0; y < MapSize; y++)
-                {
-                    GlobalConsole.WriteLine(_tiles[x, y].ToString());
+                    var TileRenderer = ToAddTile.AddComponent(new SpriteRenderer());
+                    TileRenderer.SetSprite("\\Assets\\Textures\\Town.png");
+
+                    _tiles[x, y] = ToAddTile;
                 }
             }
         }
