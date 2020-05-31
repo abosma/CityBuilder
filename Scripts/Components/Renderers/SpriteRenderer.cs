@@ -1,26 +1,26 @@
 ﻿using System;
 using System.IO;
+using CityBuilder.Scripts.Components.Base;
 using CityBuilder.Scripts.Entities;
-using CityBuilder.Scripts.Handlers;
+using CityBuilder.Scripts.Global;
 using SFML.Graphics;
 using Transform = CityBuilder.Scripts.Components.Positions.Transform;
 
 namespace CityBuilder.Scripts.Components.Renderers
 {
-    class SpriteRenderer : IComponent
+    class SpriteRenderer : Component
     {
-        public Entity Entity { get; set; }
         public Sprite _sprite;
 
         private Transform _transform;
 
-        public void Start()
+        public override void Start()
         {
             _sprite = new Sprite();
             _transform = Entity.GetComponent<Transform>();
         }
 
-        public void Update()
+        public override void Update()
         {
             _sprite.Position = _transform.GetPosition();
 

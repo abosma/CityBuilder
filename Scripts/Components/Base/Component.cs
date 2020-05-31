@@ -1,12 +1,12 @@
 ﻿using CityBuilder.Scripts.Entities;
 
-namespace CityBuilder.Scripts.Components
+namespace CityBuilder.Scripts.Components.Base
 {
-    public interface IComponent
+    public abstract class Component
     {
-        Entity Entity { get; set; }
+        public Entity Entity;
 
-        void Start();
-        void Update();
+        public abstract void Start();
+        public abstract void Update();
     }
 }

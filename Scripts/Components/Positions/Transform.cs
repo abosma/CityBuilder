@@ -1,15 +1,15 @@
 ﻿using System;
+using CityBuilder.Scripts.Components.Base;
 using CityBuilder.Scripts.Entities;
 using SFML.System;
 using GameTime = CityBuilder.Scripts.Game.GameTime;
 
 namespace CityBuilder.Scripts.Components.Positions
 {
-    class Transform : IComponent
+    class Transform : Component
     {
         public event EventHandler ReachedPosition;
 
-        public Entity Entity { get; set; }
         public Vector2f Position;
 
         private bool _isMoving;
@@ -21,12 +21,12 @@ namespace CityBuilder.Scripts.Components.Positions
             Position = new Vector2f(x, y);
         }
 
-        public void Start()
+        public override void Start()
         {
             _newPosition = Position;
         }
 
-        public void Update()
+        public override void Update()
         {
             if (_isMoving)
             {

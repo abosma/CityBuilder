@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using CityBuilder.Scripts.Entities;
 
-namespace CityBuilder.Scripts.Game
+namespace CityBuilder.Scripts.Global
 {
     public static class World
     {

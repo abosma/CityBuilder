@@ -1,16 +1,22 @@
-﻿using CityBuilder.Scripts.Entities;
-using CityBuilder.Scripts.Handlers;
+﻿using CityBuilder.Scripts.Components.Base;
+using CityBuilder.Scripts.Entities;
+using CityBuilder.Scripts.Global;
 using SFML.Window;
 
 namespace CityBuilder.Scripts.Components
 {
-    class InputComponent : IComponent
+    class InputComponent : Component
     {
         public Entity Entity { get; set; }
 
-        public void Start()
+        public override void Start()
         {
             WindowHandler.GetWindow().KeyReleased += InputComponent_KeyReleased;
+        }
+
+        public override void Update()
+        {
+            
         }
 
         private void InputComponent_KeyReleased(object sender, SFML.Window.KeyEventArgs e)
@@ -19,11 +25,6 @@ namespace CityBuilder.Scripts.Components
             {
 
             }
-        }
-
-        public void Update()
-        {
-            
         }
     }
 }

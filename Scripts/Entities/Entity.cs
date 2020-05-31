@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
-using CityBuilder.Scripts.Components;
+using CityBuilder.Scripts.Components.Base;
 using CityBuilder.Scripts.Game;
+using CityBuilder.Scripts.Global;
 
 namespace CityBuilder.Scripts.Entities
 {
     public class Entity
     {
-        public List<IComponent> Components = new List<IComponent>();
+        public List<Component> Components = new List<Component>();
 
         public int EntityId;
 
@@ -15,7 +16,7 @@ namespace CityBuilder.Scripts.Entities
             World.AddEntity(this);
         }
 
-        public T GetComponent<T>() where T : IComponent
+        public T GetComponent<T>() where T : Component
         {
             for (var i = 0; i < Components.Count; i++)
             {
@@ -30,7 +31,7 @@ namespace CityBuilder.Scripts.Entities
             return default(T);
         }
 
-        public T AddComponent<T>(T t) where T : IComponent
+        public T AddComponent<T>(T t) where T : Component
         {
             Components.Add(t);
 
@@ -38,11 +39,6 @@ namespace CityBuilder.Scripts.Entities
             t.Start();
 
             return t;
-        }
-
-        public virtual void Start()
-        {
-            
         }
 
         public virtual void Update()

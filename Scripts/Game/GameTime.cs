@@ -1,5 +1,5 @@
 ﻿using System;
-using CityBuilder.Scripts.Handlers;
+using CityBuilder.Scripts.Global;
 using SFML.System;
 
 namespace CityBuilder.Scripts.Game
@@ -15,14 +15,10 @@ namespace CityBuilder.Scripts.Game
 
         private static void GameLoop()
         {
-            WindowHandler.Initialize();
-
-            new BasicScene();
-
-            var Window = WindowHandler.GetWindow();
+            var Window = WindowHandler.Initialize();
             var Clock = new Clock();
 
-            var deltaClock = Clock.Restart();
+            new BasicScene();
 
             while (Window.IsOpen)
             {
@@ -30,11 +26,12 @@ namespace CityBuilder.Scripts.Game
                 Window.Clear();
 
                 World.UpdateEntities();
+                GlobalConsole.DrawConsole();
 
                 Window.Display();
 
-                deltaClock = Clock.Restart();
-                deltaTime = deltaClock.AsSeconds();
+                var DeltaClock = Clock.Restart();
+                deltaTime = DeltaClock.AsSeconds();
             }
         }
     }

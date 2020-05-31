@@ -1,6 +1,7 @@
 ﻿using System;
 using CityBuilder.Scripts.Components;
 using CityBuilder.Scripts.Components.Colliders;
+using CityBuilder.Scripts.Components.MapGenerator;
 using CityBuilder.Scripts.Components.Positions;
 using CityBuilder.Scripts.Components.Renderers;
 using CityBuilder.Scripts.Entities;
@@ -12,16 +13,16 @@ namespace CityBuilder.Scripts.Game
     {
         public BasicScene()
         {
-            var town = new Town();
-            var town2 = new Town();
+            var Town = new Entity();
+            var Town2 = new Entity();
 
-            var TownTransform = town.AddComponent(new Transform(10, 10));
-            var TownCollider = town.AddComponent(new Collider2D(32, 32));
-            var TownRenderer = town.AddComponent(new SpriteRenderer());
+            var TownTransform = Town.AddComponent(new Transform(10, 10));
+            var TownCollider = Town.AddComponent(new Collider2D(32, 32));
+            var TownRenderer = Town.AddComponent(new SpriteRenderer());
 
-            var Town2Transform = town2.AddComponent(new Transform(50, 50));
-            var Town2Collider = town2.AddComponent(new Collider2D(32, 32));
-            var Town2Renderer = town2.AddComponent(new SpriteRenderer());
+            var Town2Transform = Town2.AddComponent(new Transform(50, 50));
+            var Town2Collider = Town2.AddComponent(new Collider2D(32, 32));
+            var Town2Renderer = Town2.AddComponent(new SpriteRenderer());
 
             TownRenderer.SetSprite("\\Assets\\Textures\\Town.png");
             Town2Renderer.SetSprite("\\Assets\\Textures\\Town.png");
@@ -29,7 +30,9 @@ namespace CityBuilder.Scripts.Game
             TownTransform.Translate(25, 25, 0.1f);
             Town2Transform.Translate(25, 25, 0.1f);
 
-            TownCollider.AddEntityToCollisionList(town2);
+            var MapEntity = new Entity();
+
+            MapEntity.AddComponent(new MapGenerator(20));
         }
     }
 }

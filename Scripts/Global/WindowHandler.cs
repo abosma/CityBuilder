@@ -1,19 +1,21 @@
 ﻿using SFML.Graphics;
 using SFML.Window;
 
-namespace CityBuilder.Scripts.Handlers
+namespace CityBuilder.Scripts.Global
 {
     public class WindowHandler
     {
         private static RenderWindow _window;
 
-        public static void Initialize()
+        public static RenderWindow Initialize()
         {
             _window = new RenderWindow(new VideoMode(800, 600), "Test");
 
             _window.SetFramerateLimit(60);
 
             _window.Closed += Window_Closed;
+
+            return _window;
         }
 
         private static void Window_Closed(object sender, System.EventArgs e)
@@ -23,13 +25,7 @@ namespace CityBuilder.Scripts.Handlers
 
         public static RenderWindow GetWindow()
         {
-            if (_window == null)
-            {
-                return null;
-            }
-
-            var renderWindow = _window.IsOpen ? _window : null;
-            return renderWindow;
+            return _window ?? Initialize();
         }
     }
 }

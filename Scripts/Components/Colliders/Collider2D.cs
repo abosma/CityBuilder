@@ -1,23 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using CityBuilder.Scripts.Components.Base;
 using CityBuilder.Scripts.Components.Positions;
 using CityBuilder.Scripts.Components.Renderers;
 using CityBuilder.Scripts.Entities;
 
 namespace CityBuilder.Scripts.Components.Colliders
 {
-    class Collider2D : IComponent
+    class Collider2D : Collider
     {
+        public int Width { get; set; }
+        public int Height { get; set; }
+
         public event Action<Entity> CollidedWithEntity;
 
-        public Entity Entity { get; set; }
-        
-        public int Width;
-        public int Height;
-
         private Transform _transform;
-
-        private List<Entity> _collisionList = new List<Entity>();
 
         public Collider2D(int width, int height)
         {
@@ -25,33 +22,17 @@ namespace CityBuilder.Scripts.Components.Colliders
             Height = height;
         }
 
-        public void Start()
+        public override void Start()
         {
             _transform = Entity.GetComponent<Transform>();
         }
 
-        public void Update()
+        public override void Update()
         {
-            for (var i = 0; i < _collisionList.Count; i++)
-            {
-                var checkedEntity = _collisionList[i];
 
-                if (IsCollidingWithEntity(checkedEntity))
-                {
-                    OnCollidedWithEntity(checkedEntity);
-                }
-            }
         }
 
-        public void AddEntityToCollisionList(Entity entity)
-        {
-            if (!_collisionList.Contains(entity))
-            {
-                _collisionList.Add(entity);
-            }
-        }
-
-        private bool IsCollidingWithEntity(Entity entity)
+        public override bool IsCollidingWithEntity(Entity entity)
         {
             try
             {
@@ -71,7 +52,7 @@ namespace CityBuilder.Scripts.Components.Colliders
             return false;
         }
 
-        private void OnCollidedWithEntity(Entity obj)
+        public override void OnCollidedWithEntity(Entity obj)
         {
             CollidedWithEntity?.Invoke(obj);
         }

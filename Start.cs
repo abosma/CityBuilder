@@ -1,5 +1,4 @@
 ﻿using CityBuilder.Scripts.Game;
-using CityBuilder.Scripts.Handlers;
 using SFML;
 using SFML.Window;
 

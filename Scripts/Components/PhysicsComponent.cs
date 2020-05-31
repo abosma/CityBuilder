@@ -1,17 +1,18 @@
-﻿using CityBuilder.Scripts.Entities;
+﻿using CityBuilder.Scripts.Components.Base;
+using CityBuilder.Scripts.Entities;
 
 namespace CityBuilder.Scripts.Components
 {
-    class PhysicsComponent : IComponent
+    class PhysicsComponent : Component
     {
         public Entity Entity { get; set; }
 
-        public void Start()
+        public override void Start()
         {
             throw new System.NotImplementedException();
         }
 
-        public void Update()
+        public override void Update()
         {
             throw new System.NotImplementedException();
         }
