@@ -44,6 +44,11 @@ namespace CityBuilder.Scripts.Entities
             return t;
         }
 
+        public virtual void SetActive(bool active)
+        {
+            IsActive = active;
+        }
+
         public virtual void Update()
         {
             for (var i = 0; i < Components.Count; i++)
