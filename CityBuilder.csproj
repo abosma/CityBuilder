@@ -12,6 +12,8 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>x64</PlatformTarget>
@@ -70,26 +72,32 @@
       <HintPath>packages\OpenTK.3.2\lib\net20\OpenTK.dll</HintPath>
     </Reference>
     <Reference Include="SFML.Audio, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\SFML.Audio.2.5.0\lib\netstandard2.0\SFML.Audio.dll</HintPath>
+      <HintPath>packages\TGUI.Net.win-x64.0.8.7.15\lib\netstandard2.0\SFML.Audio.dll</HintPath>
     </Reference>
     <Reference Include="SFML.Graphics, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\SFML.Graphics.2.5.0\lib\netstandard2.0\SFML.Graphics.dll</HintPath>
+      <HintPath>packages\TGUI.Net.win-x64.0.8.7.15\lib\netstandard2.0\SFML.Graphics.dll</HintPath>
     </Reference>
     <Reference Include="SFML.System, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\SFML.System.2.5.0\lib\netstandard2.0\SFML.System.dll</HintPath>
+      <HintPath>packages\TGUI.Net.win-x64.0.8.7.15\lib\netstandard2.0\SFML.System.dll</HintPath>
     </Reference>
     <Reference Include="SFML.Window, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\SFML.Window.2.5.0\lib\netstandard2.0\SFML.Window.dll</HintPath>
+      <HintPath>packages\TGUI.Net.win-x64.0.8.7.15\lib\netstandard2.0\SFML.Window.dll</HintPath>
+    </Reference>
+    <Reference Include="tgui.net, Version=0.8.7.15, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\TGUI.Net.win-x64.0.8.7.15\lib\netstandard2.0\tgui.net.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Scripts\Components\Base\Component.cs" />
+    <Compile Include="Scripts\Components\Camera\Camera.cs" />
     <Compile Include="Scripts\Components\Colliders\Collider.cs" />
     <Compile Include="Scripts\Components\Renderers\RectangleRenderer.cs" />
     <Compile Include="Scripts\Components\Renderers\SpriteRenderer.cs" />
     <Compile Include="Scripts\Components\Positions\Transform.cs" />
     <Compile Include="Scripts\Game\BasicScene.cs" />
     <Compile Include="Scripts\Global\GlobalConsole.cs" />
+    <Compile Include="Scripts\Global\GUIHandler.cs" />
+    <Compile Include="Scripts\Global\ViewHandler.cs" />
     <Compile Include="Scripts\Global\World.cs" />
     <Compile Include="Scripts\Components\MapGenerator\MapGenerator.cs" />
     <Compile Include="Scripts\Components\MapGenerator\Tile.cs" />
@@ -120,4 +128,11 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="packages\TGUI.Net.win-x64.0.8.7.15\build\TGUI.Net.win-x64.targets" Condition="Exists('packages\TGUI.Net.win-x64.0.8.7.15\build\TGUI.Net.win-x64.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\TGUI.Net.win-x64.0.8.7.15\build\TGUI.Net.win-x64.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\TGUI.Net.win-x64.0.8.7.15\build\TGUI.Net.win-x64.targets'))" />
+  </Target>
 </Project>

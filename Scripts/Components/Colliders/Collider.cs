@@ -109,7 +109,8 @@ namespace CityBuilder.Scripts.Components.Colliders
 
         private bool IsCollidingWithMouse()
         {
-            var MousePosition = SFML.Window.Mouse.GetPosition(WindowHandler.GetWindow());
+            var PixelPosition = SFML.Window.Mouse.GetPosition(WindowHandler.GetWindow());
+            var MousePosition = WindowHandler.GetWindow().MapPixelToCoords(PixelPosition);
             var Position = Entity.Transform.Position;
 
             return MousePosition.X > Position.X &&

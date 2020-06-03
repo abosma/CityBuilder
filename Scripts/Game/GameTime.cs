@@ -16,6 +16,7 @@ namespace CityBuilder.Scripts.Game
         private static void GameLoop()
         {
             var Window = WindowHandler.Initialize();
+            var GUI = GUIHandler.Initialize();
             var Clock = new Clock();
 
             new BasicScene();
@@ -29,6 +30,7 @@ namespace CityBuilder.Scripts.Game
                 World.UpdateEntities();
                 GlobalConsole.DrawConsole();
 
+                GUI.Draw();
                 Window.Display();
 
                 var DeltaClock = Clock.Restart();

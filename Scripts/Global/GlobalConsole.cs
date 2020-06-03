@@ -18,8 +18,7 @@ namespace CityBuilder.Scripts.Global
                 Font = new Font(Directory.GetCurrentDirectory() + "\\Assets\\Fonts\\Ubuntu-Regular.ttf"),
                 CharacterSize = 12,
                 FillColor = Color.White,
-                Style = Text.Styles.Regular,
-                Position = new Vector2f(0, 500)
+                Style = Text.Styles.Regular
             };
         }
 
@@ -59,8 +58,19 @@ namespace CityBuilder.Scripts.Global
             }
 
             _text.DisplayedString = ToDisplayString;
+            _text.Position = GetConsoleLocation();
 
             WindowHandler.GetWindow().Draw(_text);
+        }
+
+        private static Vector2f GetConsoleLocation()
+        {
+            var Window = WindowHandler.GetWindow();
+            var WindowView = Window.GetView();
+            var ConsoleLocationX = WindowView.Center.X - WindowView.Size.X / 2f;
+            var ConsoleLocationY = WindowView.Center.Y + WindowView.Size.Y * 0.33f;
+
+            return new Vector2f(ConsoleLocationX, ConsoleLocationY);
         }
     }
 }
