@@ -15,13 +15,13 @@ namespace CityBuilder.Scripts.Components.Renderers
         public override void Start()
         {
             _sprite = new Sprite();
+
+            DrawableHandler.AddDrawable(_sprite, 0);
         }
 
         public override void Update()
         {
             _sprite.Position = Entity.Transform.GetPosition();
-
-            WindowHandler.GetWindow().Draw(_sprite);
         }
 
         public void SetSprite(Sprite sprite)

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CityBuilder.Scripts.Components.Base;
+﻿using CityBuilder.Scripts.Components.Base;
 using CityBuilder.Scripts.Global;
 using SFML.Graphics;
 using SFML.System;
@@ -12,33 +7,43 @@ namespace CityBuilder.Scripts.Components.Camera
 {
     class Camera : Component
     {
-        private View _cameraView;
+        public View CameraView;
 
         public Camera(View cameraView)
         {
-            _cameraView = cameraView;
+            CameraView = cameraView;
         }
 
         public override void Start()
         {
-            
+            WindowHandler.GetWindow().Resized += Camera_Resized;
+        }
+
+        private void Camera_Resized(object sender, SFML.Window.SizeEventArgs e)
+        {
+            CameraView.Size = new Vector2f(e.Width, e.Height);
         }
 
         public override void Update()
         {
-            _cameraView.Center = Entity.Transform.Position;
+            CameraView.Center = Entity.Transform.Position;
 
-            WindowHandler.GetWindow().SetView(_cameraView);
+            WindowHandler.GetWindow().SetView(CameraView);
         }
 
         public void SetSize(float viewWidth, float viewHeight)
         {
-            _cameraView.Size = new Vector2f(viewWidth, viewHeight);
+            CameraView.Size = new Vector2f(viewWidth, viewHeight);
         }
 
         public void SetSize(Vector2f viewSize)
         {
-            _cameraView.Size = viewSize;
+            CameraView.Size = viewSize;
+        }
+
+        public Vector2f GetSize()
+        {
+            return CameraView.Size;
         }
     }
 }

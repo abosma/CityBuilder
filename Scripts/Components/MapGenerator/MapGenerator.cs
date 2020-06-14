@@ -1,4 +1,5 @@
 ﻿using CityBuilder.Scripts.Components.Base;
+using CityBuilder.Scripts.Components.Colliders;
 using CityBuilder.Scripts.Components.Renderers;
 using CityBuilder.Scripts.Global;
 using SFML.Graphics;
@@ -21,7 +22,6 @@ namespace CityBuilder.Scripts.Components.MapGenerator
             _tiles = new Tile[MapSize, MapSize];
 
             FillList();
-            
         }
 
         public override void Update()
@@ -47,10 +47,16 @@ namespace CityBuilder.Scripts.Components.MapGenerator
                 for (var y = 0; y < MapSize; y++)
                 {
                     var ToAddTile = new Tile($"Tile{x}_{y}");
+                    
+                    var TileRenderer = ToAddTile.AddComponent(new RectangleRenderer(32, 32));
+                    TileRenderer.SetColor(Color.Green);
+
                     ToAddTile.Transform.SetPosition(32 * x, 32 * y);
 
-                    var TileRenderer = ToAddTile.AddComponent(new SpriteRenderer());
-                    TileRenderer.SetSprite("\\Assets\\Textures\\Town.png");
+                    ToAddTile.AddComponent(new Collider(32, 32));
+                    ToAddTile.AddComponent(new TileControls());
+
+                    World.AddEntity(ToAddTile);
 
                     _tiles[x, y] = ToAddTile;
                 }

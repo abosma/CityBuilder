@@ -1,10 +1,11 @@
 ﻿using CityBuilder.Scripts.Components.Camera;
 using CityBuilder.Scripts.Components.Colliders;
+using CityBuilder.Scripts.Components.MapGenerator;
 using CityBuilder.Scripts.Components.Renderers;
+using CityBuilder.Scripts.Components.Town;
 using CityBuilder.Scripts.Entities;
 using CityBuilder.Scripts.Global;
 using SFML.Graphics;
-using TGUI;
 
 namespace CityBuilder.Scripts.Game
 {
@@ -12,48 +13,41 @@ namespace CityBuilder.Scripts.Game
     {
         public BasicScene()
         {
-            var Town1 = new Entity();
-            var Town1Renderer = Town1.AddComponent(new RectangleRenderer(50, 50));
-            var Town1Collider = Town1.AddComponent(new Collider(50, 50));
-            
-            Town1Renderer.SetColor(Color.White);
-            
-            Town1Collider.MouseEnter += (sender, args) => GlobalConsole.WriteLine("Mouse Enter Town1");
-            Town1Collider.MouseOver += (sender, args) => GlobalConsole.WriteLine("Mouse Over Town1");
-            Town1Collider.MouseExit += (sender, args) => GlobalConsole.WriteLine("Mouse Exit Town1");
+            InitializeMap();
+            InitializeCamera();
 
+            //var Town1 = new Entity(default, default, "Town 1");
+            //var Town1Renderer = Town1.AddComponent(new RectangleRenderer(50, 50));
+            //var Town1Collider = Town1.AddComponent(new Collider(50, 50));
+            //var Town1HoverInformation = Town1.AddComponent(new HoverInformation());
+
+            //var Town2 = new Entity(50, 50, "Town 2");
+            //var Town2Renderer = Town2.AddComponent(new RectangleRenderer(50, 50));
+            //var Town2Collider = Town2.AddComponent(new Collider(50, 50));
+            //var Town2HoverInformation = Town2.AddComponent(new HoverInformation());
+            //var Town2Input = Town2.AddComponent(new TownControls());
+
+            //Town1Renderer.SetColor(Color.White);
+            //Town2Renderer.SetColor(Color.Red);
+
+            //World.AddEntity(Town1);
+            //World.AddEntity(Town2);
+        }
+
+        private void InitializeCamera()
+        {
             var CameraEntity = new Entity();
             var View = ViewHandler.CreateView(new FloatRect(0, 0, 800, 600));
-            var Camera = CameraEntity.AddComponent(new Camera(View));
-
-            CameraEntity.Transform.SetPosition(400,300);
+            CameraEntity.AddComponent(new Camera(View));
+            CameraEntity.AddComponent(new RTSCamera());
 
             World.AddEntity(CameraEntity);
-            World.AddEntity(Town1);
+        }
 
-            CameraEntity.Transform.Translate(-50f, -50f, 0.1f);
-
-            //var GUI = GUIHandler.GetGUI();
-
-            //var Button = new Button("Test Button");
-            //Button.Connect("pressed", widget => GlobalConsole.WriteLine("Test Button Pressed"));
-            //Button.ToolTip = new Label("Test Tooltip");
-
-            //GUI.Add(Button, "TestButton");
-
-            //Town1.Transform.Translate(25, 25, 0.5f);
-
-            //var Town2 = new Entity(50, 50);
-            //var Town2Renderer = Town2.AddComponent(new RectangleRenderer(10, 10));
-            //var Town2Collider = Town2.AddComponent(new Collider(10, 10));
-
-            //Town2Renderer.SetColor(Color.White);
-            //Town2.Transform.Translate(25, 25, 0.5f);
-
-            //Town1Collider.CollidedWithEntity += entity => GlobalConsole.WriteLine($"Collided with {entity.EntityId}");
-
-            //var MapEntity = new Entity();
-            //var MapGenerator = MapEntity.AddComponent(new MapGenerator(10));
+        private void InitializeMap()
+        {
+            var MapEntity = new Entity();
+            var MapGenerator = MapEntity.AddComponent(new MapGenerator(10));
         }
     }
 }

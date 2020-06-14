@@ -47,5 +47,10 @@ namespace CityBuilder.Scripts.Global
                 }
             }
         }
+
+        public static List<Entity> GetEntities()
+        {
+            return _entityList;
+        }
     }
 }

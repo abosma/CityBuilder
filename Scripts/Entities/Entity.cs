@@ -10,13 +10,16 @@ namespace CityBuilder.Scripts.Entities
 
         public int EntityId;
 
+        public string Name;
+
         public bool IsActive = false;
 
         public Transform Transform;
 
-        public Entity(int x = 0, int y = 0)
+        public Entity(int x = 0, int y = 0, string name = "DefaultName")
         {
             Transform = AddComponent(new Transform(x, y));
+            Name = name;
         }
 
         public T GetComponent<T>() where T : Component

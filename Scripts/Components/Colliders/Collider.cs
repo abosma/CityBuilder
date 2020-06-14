@@ -1,8 +1,8 @@
 ﻿using System;
 using CityBuilder.Scripts.Components.Base;
-using CityBuilder.Scripts.Components.Positions;
 using CityBuilder.Scripts.Entities;
 using CityBuilder.Scripts.Global;
+using Transform = CityBuilder.Scripts.Components.Positions.Transform;
 
 namespace CityBuilder.Scripts.Components.Colliders
 {
@@ -18,7 +18,7 @@ namespace CityBuilder.Scripts.Components.Colliders
         public event EventHandler MouseOver;
         public event EventHandler MouseExit;
 
-        private bool _mouseOver;
+        public bool IsMouseOver;
         #endregion
 
         #region Initialization
@@ -31,7 +31,7 @@ namespace CityBuilder.Scripts.Components.Colliders
         }
         #endregion
 
-        #region Unused Overrides
+        #region Overrides
         public override void Start()
         {
 
@@ -83,14 +83,14 @@ namespace CityBuilder.Scripts.Components.Colliders
         #region Mouse Collision
         public void CheckCollisionWithMouse()
         {
-            if (!_mouseOver)
+            if (!IsMouseOver)
             {
                 if (!IsCollidingWithMouse())
                 {
                     return;
                 }
 
-                _mouseOver = true;
+                IsMouseOver = true;
                 OnMouseEnter();
             }
             else
@@ -101,7 +101,7 @@ namespace CityBuilder.Scripts.Components.Colliders
                 }
                 else
                 {
-                    _mouseOver = false;
+                    IsMouseOver = false;
                     OnMouseExit();
                 }
             }
@@ -109,8 +109,7 @@ namespace CityBuilder.Scripts.Components.Colliders
 
         private bool IsCollidingWithMouse()
         {
-            var PixelPosition = SFML.Window.Mouse.GetPosition(WindowHandler.GetWindow());
-            var MousePosition = WindowHandler.GetWindow().MapPixelToCoords(PixelPosition);
+            var MousePosition = WindowHandler.GetMousePositionRelativeToWindow();
             var Position = Entity.Transform.Position;
 
             return MousePosition.X > Position.X &&

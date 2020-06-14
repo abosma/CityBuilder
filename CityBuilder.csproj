@@ -40,6 +40,9 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Assets\Fonts\munro-narrow.ttf" />
+    <None Include="Assets\Fonts\munro-small.ttf" />
+    <None Include="Assets\Fonts\munro.ttf" />
     <None Include="Assets\Fonts\Ubuntu-Bold.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -90,13 +93,20 @@
   <ItemGroup>
     <Compile Include="Scripts\Components\Base\Component.cs" />
     <Compile Include="Scripts\Components\Camera\Camera.cs" />
+    <Compile Include="Scripts\Components\Camera\RTSCamera.cs" />
     <Compile Include="Scripts\Components\Colliders\Collider.cs" />
+    <Compile Include="Scripts\Components\MapGenerator\TileControls.cs" />
     <Compile Include="Scripts\Components\Renderers\RectangleRenderer.cs" />
     <Compile Include="Scripts\Components\Renderers\SpriteRenderer.cs" />
     <Compile Include="Scripts\Components\Positions\Transform.cs" />
+    <Compile Include="Scripts\Components\Town\HoverInformation.cs" />
+    <Compile Include="Scripts\Components\Town\TownControls.cs" />
     <Compile Include="Scripts\Game\BasicScene.cs" />
+    <Compile Include="Scripts\Global\DrawableOrder.cs" />
     <Compile Include="Scripts\Global\GlobalConsole.cs" />
     <Compile Include="Scripts\Global\GUIHandler.cs" />
+    <Compile Include="Scripts\Global\DrawableHandler.cs" />
+    <Compile Include="Scripts\Global\InputHandler.cs" />
     <Compile Include="Scripts\Global\ViewHandler.cs" />
     <Compile Include="Scripts\Global\World.cs" />
     <Compile Include="Scripts\Components\MapGenerator\MapGenerator.cs" />

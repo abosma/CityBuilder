@@ -1,4 +1,5 @@
 ﻿using SFML.Graphics;
+using SFML.System;
 using SFML.Window;
 
 namespace CityBuilder.Scripts.Global
@@ -26,6 +27,14 @@ namespace CityBuilder.Scripts.Global
         public static RenderWindow GetWindow()
         {
             return _window ?? Initialize();
+        }
+
+        public static Vector2f GetMousePositionRelativeToWindow()
+        {
+            var PixelPosition = Mouse.GetPosition(_window);
+            var MousePosition = _window.MapPixelToCoords(PixelPosition);
+
+            return MousePosition;
         }
     }
 }

@@ -11,24 +11,27 @@ namespace CityBuilder.Scripts.Components.Renderers
 
         public RectangleRenderer(float width = 0, float height = 0)
         {
-            Rectangle = new RectangleShape(new Vector2f(width, height));
+            Rectangle = DrawableHandler.CreateDrawableRectangleShape(width, height);
         }
 
         public override void Start()
         {
-            
+            DrawableHandler.AddDrawable(Rectangle, 0);
         }
 
         public override void Update()
         {
             Rectangle.Position = Entity.Transform.GetPosition();
-
-            WindowHandler.GetWindow().Draw(Rectangle);
         }
 
         public void SetColor(Color color)
         {
             Rectangle.FillColor = color;
+        }
+
+        public Color GetColor()
+        {
+            return Rectangle.FillColor;
         }
 
         public void SetSize(Vector2f newSize)

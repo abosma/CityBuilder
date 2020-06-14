@@ -1,5 +1,6 @@
 ﻿using System;
 using CityBuilder.Scripts.Global;
+using SFML.Graphics;
 using SFML.System;
 
 namespace CityBuilder.Scripts.Game
@@ -24,11 +25,13 @@ namespace CityBuilder.Scripts.Game
             while (Window.IsOpen)
             {
                 Window.DispatchEvents();
-                Window.Clear();
+                Window.Clear(Color.Blue);
 
                 WorldCollision.CheckCollision();
                 World.UpdateEntities();
                 GlobalConsole.DrawConsole();
+                DrawableHandler.Draw();
+                InputHandler.UpdateInputs();
 
                 GUI.Draw();
                 Window.Display();
