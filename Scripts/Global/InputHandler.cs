@@ -21,7 +21,6 @@ namespace CityBuilder.Scripts.Global
             var LeftButtonPressed = Mouse.IsButtonPressed(Button.Left);
             var RightButtonPressed = Mouse.IsButtonPressed(Button.Right);
 
-
             if (!_leftMouseDown && !LeftButtonPressed)
             {
                 _leftMouseDown = false;

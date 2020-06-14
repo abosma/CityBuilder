@@ -5,7 +5,7 @@ using SFML.System;
 
 namespace CityBuilder.Scripts.Components.Renderers
 {
-    class RectangleRenderer : Component
+    class RectangleRenderer : Renderer
     {
         public RectangleShape Rectangle;
 
@@ -16,6 +16,8 @@ namespace CityBuilder.Scripts.Components.Renderers
 
         public override void Start()
         {
+            Drawable = Rectangle;
+
             DrawableHandler.AddDrawable(Rectangle, 0);
         }
 

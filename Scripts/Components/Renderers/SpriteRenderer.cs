@@ -8,13 +8,14 @@ using Transform = CityBuilder.Scripts.Components.Positions.Transform;
 
 namespace CityBuilder.Scripts.Components.Renderers
 {
-    class SpriteRenderer : Component
+    class SpriteRenderer : Renderer
     {
         public Sprite _sprite;
 
         public override void Start()
         {
             _sprite = new Sprite();
+            Drawable = _sprite;
 
             DrawableHandler.AddDrawable(_sprite, 0);
         }

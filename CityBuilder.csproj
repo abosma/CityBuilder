@@ -97,6 +97,7 @@
     <Compile Include="Scripts\Components\Colliders\Collider.cs" />
     <Compile Include="Scripts\Components\MapGenerator\TileControls.cs" />
     <Compile Include="Scripts\Components\Renderers\RectangleRenderer.cs" />
+    <Compile Include="Scripts\Components\Renderers\Renderer.cs" />
     <Compile Include="Scripts\Components\Renderers\SpriteRenderer.cs" />
     <Compile Include="Scripts\Components\Positions\Transform.cs" />
     <Compile Include="Scripts\Components\Town\HoverInformation.cs" />

@@ -1,6 +1,10 @@
 ﻿using System.Collections.Generic;
 using CityBuilder.Scripts.Components.Base;
+using CityBuilder.Scripts.Components.Colliders;
 using CityBuilder.Scripts.Components.Positions;
+using CityBuilder.Scripts.Components.Renderers;
+using CityBuilder.Scripts.Global;
+using SFML.System;
 
 namespace CityBuilder.Scripts.Entities
 {
@@ -12,7 +16,7 @@ namespace CityBuilder.Scripts.Entities
 
         public string Name;
 
-        public bool IsActive = false;
+        public bool IsActive = true;
 
         public Transform Transform;
 
@@ -20,6 +24,7 @@ namespace CityBuilder.Scripts.Entities
         {
             Transform = AddComponent(new Transform(x, y));
             Name = name;
+            World.AddEntity(this);
         }
 
         public T GetComponent<T>() where T : Component
@@ -50,6 +55,28 @@ namespace CityBuilder.Scripts.Entities
         public virtual void SetActive(bool active)
         {
             IsActive = active;
+        }
+
+        public virtual void Destroy()
+        {
+            for (var i = 0; i < Components.Count; i++)
+            {
+                var Component = Components[i];
+
+                if (Component.GetType() == typeof(Collider))
+                {
+                    WorldCollision.RemoveCollider((Collider)Component);
+                }
+
+                if (Component.GetType() == typeof(Renderer))
+                {
+                    var Renderer = (Renderer) Component;
+
+                    DrawableHandler.RemoveDrawable(Renderer.Drawable);
+                }
+            }
+
+            World.RemoveEntity(this);
         }
 
         public virtual void Update()

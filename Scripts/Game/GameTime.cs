@@ -25,7 +25,7 @@ namespace CityBuilder.Scripts.Game
             while (Window.IsOpen)
             {
                 Window.DispatchEvents();
-                Window.Clear(Color.Blue);
+                Window.Clear();
 
                 WorldCollision.CheckCollision();
                 World.UpdateEntities();

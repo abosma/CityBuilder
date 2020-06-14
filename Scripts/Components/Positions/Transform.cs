@@ -21,6 +21,11 @@ namespace CityBuilder.Scripts.Components.Positions
             Position = new Vector2f(x, y);
         }
 
+        public Transform(Vector2f position)
+        {
+            Position = position;
+        }
+
         public override void Start()
         {
             _newPosition = Position;

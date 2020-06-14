@@ -40,13 +40,11 @@ namespace CityBuilder.Scripts.Game
             var View = ViewHandler.CreateView(new FloatRect(0, 0, 800, 600));
             CameraEntity.AddComponent(new Camera(View));
             CameraEntity.AddComponent(new RTSCamera());
-
-            World.AddEntity(CameraEntity);
         }
 
         private void InitializeMap()
         {
-            var MapEntity = new Entity();
+            var MapEntity = new Entity(name:"MapGenerator");
             var MapGenerator = MapEntity.AddComponent(new MapGenerator(10));
         }
     }

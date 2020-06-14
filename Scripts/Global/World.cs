@@ -29,6 +29,32 @@ namespace CityBuilder.Scripts.Global
             }
         }
 
+        public static Entity GetEntity(Entity entity)
+        {
+            for (var i = 0; i < _entityList.Count; i++)
+            {
+                if (_entityList[i].Equals(entity))
+                {
+                    return _entityList[i];
+                }
+            }
+
+            return null;
+        }
+
+        public static Entity GetEntity(string entityName)
+        {
+            for (var i = 0; i < _entityList.Count; i++)
+            {
+                if (_entityList[i].Name == entityName)
+                {
+                    return _entityList[i];
+                }
+            }
+
+            return null;
+        }
+
         public static void RemoveEntity(Entity entity)
         {
             if (_entityList.Contains(entity))

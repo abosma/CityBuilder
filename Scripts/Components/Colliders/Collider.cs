@@ -83,9 +83,11 @@ namespace CityBuilder.Scripts.Components.Colliders
         #region Mouse Collision
         public void CheckCollisionWithMouse()
         {
+            var MouseCollision = IsCollidingWithMouse();
+
             if (!IsMouseOver)
             {
-                if (!IsCollidingWithMouse())
+                if (!MouseCollision)
                 {
                     return;
                 }
@@ -95,7 +97,7 @@ namespace CityBuilder.Scripts.Components.Colliders
             }
             else
             {
-                if (IsCollidingWithMouse())
+                if (MouseCollision)
                 {
                     OnMouseOver();
                 }
